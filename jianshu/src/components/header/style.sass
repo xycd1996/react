@@ -1,0 +1,56 @@
+.header 
+  border-bottom: 1px solid #f0f0f0
+  .container
+    display: flex
+    justify-content: space-between
+    margin: 0 auto
+    min-width: 768px
+    max-width: 1440px
+    height: 58px
+    .logo
+      flex: 0 0 250px
+      height: 58px
+    .middle
+      flex: 1 0 auto
+      display: flex
+      align-items: center
+      ul
+        display: flex
+        font-size: 17px
+        li
+          padding: 20px
+          margin-right: 5px
+          display: flex
+          align-items: center
+          cursor: pointer
+          i
+            margin-right: 5px
+    .right
+      flex: 0 0 330px
+      font-size: 15px
+      color: #969696
+      ul
+        display: flex
+        justify-content: space-around
+        align-items: center
+        height: 100%
+        .font-style, .login, .register, .write
+          cursor: pointer
+        .font-style
+          font-size: 18px
+        .register
+          padding: 10px 24px
+          color: #ea6f5a
+          border: 1px solid rgba(236,97,73,.7)
+          border-radius: 50px
+          &:hover
+            background: rgba(236,97,73,.1)
+        .write
+          padding: 10px 24px
+          color: #fff
+          border: 1px solid rgba(236,97,73,.7)
+          border-radius: 50px
+          background: rgba(236,97,73,.9)
+          &:hover
+            background: rgba(236,97,73,1)
+  
