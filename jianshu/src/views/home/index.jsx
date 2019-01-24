@@ -27,6 +27,8 @@ export default class Home extends Component {
         <div className='content-container'>
           <div className='content-left'>
             <Banner
+              width={625}
+              height={270}
               imgList={this.state.imgList}
               rollingTime={this.state.rollingTime}
             />

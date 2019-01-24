@@ -1,0 +1,38 @@
+.banner
+  .container
+    ul
+      position: relative
+      width: 625px
+      height: 270px
+      overflow: hidden
+      .banner-enter, .banner-enter-active
+        display: inline-block
+        transform: translate3d(625px, 0, 0)
+      .banner-enter-done
+        display: inline-block
+        transform: translate3d(0, 0, 0)
+        transition: all 0.5s ease-in
+      .banner-exit, .banner-exit-acitve
+        display: inline-block
+        transform: translate3d(0, 0, 0)
+        transition: all 0.5s ease-in
+      .banner-exit-done
+        display: inline-block
+        transform: translate3d(-625px, 0, 0)
+        transition: all 0.5s ease-in
+      li
+        position: absolute
+        display: none
+        &:first-child
+          display: inline-block
+        .image
+          border-radius: 8px
+      //   position: absolute
+      //   transform: translate3d(625px, 0, 0)
+      //   transition: all .5s ease-in
+      //   &.active
+      //     transform: translate3d(0, 0, 0)
+      //     transition: all .5s ease-in
+      //   &.hide
+      //     transform: translate3d(-625px, 0, 0)
+      //     transition: all .5s ease-in

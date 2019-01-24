@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { CSSTransition } from 'react-transition-group'
 
 import './style.sass'
 
@@ -6,17 +7,39 @@ export default class Banner extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showImg: props.imgList[0]
+      showImg: 0,
+      test: false
     }
   }
 
   render() {
-    const { imgList } = this.props
+    const { imgList, width, height } = this.props
     const { showImg } = this.state
     return (
       <div className='banner'>
         <div className='container'>
-          <img className='image' src={showImg} />
+          <ul>
+            {imgList.map((item, index) => {
+              return (
+                <CSSTransition
+                  in={index === showImg ? true : false}
+                  classNames='banner'
+                  timeout={500}
+                  key={`${item}${index}`}
+                >
+                  <li className='item'>
+                    <img
+                      className='image'
+                      src={item}
+                      width={width}
+                      height={height}
+                      alt=''
+                    />
+                  </li>
+                </CSSTransition>
+              )
+            })}
+          </ul>
           <ul>
             {imgList.map((item, index) => {
               return (
@@ -32,28 +55,28 @@ export default class Banner extends Component {
   }
 
   componentDidMount() {
-    this.ChangeImg()
+    this.timedScrollImage()
   }
 
-  ChangeImg() {
-    const { rollingTime, imgList } = this.props
-    let index = 1
-    let clearTimer = setInterval(() => {
-      this.setState({
-        showImg: imgList[index]
+  timedScrollImage() {
+    const timer = setInterval(() => {
+      this.setState((preState, props) => {
+        if (preState.showImg + 1 >= props.imgList.length) {
+          return {
+            showImg: 0
+          }
+        }
+        let showImg = preState.showImg
+        showImg++
+        return { showImg }
       })
-      if (index + 1 >= imgList.length) {
-        index = 0
-        return
-      }
-      index++
-    }, rollingTime)
+    }, this.props.rollingTime)
     this.setState({
-      clearTimer
+      timer
     })
   }
 
   componentWillUnmount() {
-    clearInterval(this.state.clearTimer)
+    clearInterval(this.state.timer)
   }
 }
