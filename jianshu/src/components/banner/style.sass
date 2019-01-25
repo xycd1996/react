@@ -1,38 +1,68 @@
 .banner
   .container
-    ul
+    display: flex
+    align-items: center
+    position: relative
+    .images-container
       position: relative
       width: 625px
       height: 270px
       overflow: hidden
-      .banner-enter, .banner-enter-active
+      border-radius: 8px
+      .image-animation-enter, .image-animation-enter-active
         display: inline-block
         transform: translate3d(625px, 0, 0)
-      .banner-enter-done
+      .image-animation-enter-done
         display: inline-block
         transform: translate3d(0, 0, 0)
-        transition: all 0.5s ease-in
-      .banner-exit, .banner-exit-acitve
+        transition: all .5s ease-in
+      .image-animation-exit, .image-animation-exit-acitve
         display: inline-block
         transform: translate3d(0, 0, 0)
-        transition: all 0.5s ease-in
-      .banner-exit-done
+        transition: all .5s ease-in
+      .image-animation-exit-done
         display: inline-block
         transform: translate3d(-625px, 0, 0)
-        transition: all 0.5s ease-in
+        transition: all .5s ease-in
       li
         position: absolute
         display: none
         &:first-child
           display: inline-block
-        .image
-          border-radius: 8px
-      //   position: absolute
-      //   transform: translate3d(625px, 0, 0)
-      //   transition: all .5s ease-in
-      //   &.active
-      //     transform: translate3d(0, 0, 0)
-      //     transition: all .5s ease-in
-      //   &.hide
-      //     transform: translate3d(-625px, 0, 0)
-      //     transition: all .5s ease-in
+    .bar-container
+      position: absolute
+      bottom: 10px
+      display: flex
+      justify-content: center
+      width: 100%
+      .bar
+        margin: 0 3px
+        width: 28px
+        height: 2px
+        background-color: #888
+        transition: all 1s ease-in
+        &.show
+          background-color: #fff
+          transition: all 1s ease-in
+    .pre-container, .next-container
+      display: flex
+      justify-content: center
+      align-items: center
+      position: absolute
+      width: 40px
+      height: 50px
+      font-size: 18px
+      color: rgba(255, 255, 255, 0)
+      background: rgba(0, 0, 0, 0)
+      z-index: 10
+      transition: all 0.1s ease-in
+      &.pre-container
+        left: 0
+        border-radius: 0 5px 5px 0
+      &.next-container
+        right: 0
+        border-radius: 5px 0 0 5px
+      &.show
+        color: rgba(255, 255, 255, 1)
+        background: rgba(0, 0, 0, 0.4)
+        transition: all 0.2s ease-in
