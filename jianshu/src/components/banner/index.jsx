@@ -8,7 +8,8 @@ export default class Banner extends Component {
     super(props)
     this.state = {
       showImg: 0,
-      showToggle: false
+      showToggle: false,
+      sliderRight: false
     }
     this.onMouseOverBanner = this.onMouseOverBanner.bind(this)
     this.onMouseOutBanner = this.onMouseOutBanner.bind(this)
@@ -17,8 +18,8 @@ export default class Banner extends Component {
   }
 
   render() {
-    const { imgList, width, height } = this.props
-    const { showImg, showToggle } = this.state
+    const { imgList } = this.props
+    const { showImg, showToggle, sliderRight } = this.state
     return (
       <div
         className='banner'
@@ -37,18 +38,17 @@ export default class Banner extends Component {
               return (
                 <CSSTransition
                   in={index === showImg ? true : false}
-                  classNames='image-animation'
-                  timeout={100}
+                  classNames={
+                    sliderRight
+                      ? 'image-animation-right'
+                      : 'image-animation-left'
+                  }
+                  timeout={500}
                   key={`${item}${index}`}
+                  unmountOnExit
                 >
                   <li className='item'>
-                    <img
-                      className='image'
-                      src={item}
-                      width={width}
-                      height={height}
-                      alt=''
-                    />
+                    <img className='image' src={item} width='100%' alt='' />
                   </li>
                 </CSSTransition>
               )
@@ -82,20 +82,32 @@ export default class Banner extends Component {
   bannerNext() {
     this.setState((state, props) => {
       if (state.showImg + 1 === props.imgList.length) {
-        return { showImg: 0 }
+        return {
+          sliderRight: false,
+          showImg: 0
+        }
       }
       const showImg = state.showImg + 1
-      return { showImg }
+      return {
+        sliderRight: false,
+        showImg
+      }
     })
   }
 
   bannerPre() {
     this.setState((state, props) => {
       if (state.showImg === 0) {
-        return { showImg: props.imgList.length - 1 }
+        return {
+          sliderRight: true,
+          showImg: props.imgList.length - 1
+        }
       }
       const showImg = state.showImg - 1
-      return { showImg }
+      return {
+        sliderRight: true,
+        showImg
+      }
     })
   }
 
@@ -123,7 +135,10 @@ export default class Banner extends Component {
         }
         let showImg = preState.showImg
         showImg++
-        return { showImg }
+        return {
+          sliderRight: false,
+          showImg
+        }
       })
     }, this.props.rollingTime)
     this.setState({

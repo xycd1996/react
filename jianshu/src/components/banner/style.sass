@@ -1,34 +1,50 @@
+$banner-width: 625px    // 轮播图宽度
+$banner-height: 270px   // 轮播图高度
+$banner-raduis: 8px   // 轮播图圆角
+
 .banner
+  padding-bottom: 35px
+  border-bottom: 1px solid #f0f0f0
   .container
     display: flex
     align-items: center
     position: relative
     .images-container
       position: relative
-      width: 625px
-      height: 270px
+      width: $banner-width
+      height: $banner-height
       overflow: hidden
-      border-radius: 8px
-      .image-animation-enter, .image-animation-enter-active
-        display: inline-block
-        transform: translate3d(625px, 0, 0)
-      .image-animation-enter-done
-        display: inline-block
-        transform: translate3d(0, 0, 0)
-        transition: all .5s ease-in
-      .image-animation-exit, .image-animation-exit-acitve
-        display: inline-block
-        transform: translate3d(0, 0, 0)
-        transition: all .5s ease-in
-      .image-animation-exit-done
-        display: inline-block
-        transform: translate3d(-625px, 0, 0)
-        transition: all .5s ease-in
-      li
+      border-radius: $banner-raduis
+      .item
         position: absolute
-        display: none
-        &:first-child
-          display: inline-block
+      .image-animation-left-enter
+        -webkit-transform: translate3d(625px, 0, 0)
+        transform: translate3d(625px, 0, 0)
+      .image-animation-left-enter-active
+        transform: translate3d(0, 0, 0)
+        -webkit-transform: translate3d(0, 0, 0)
+        transition: all .5s
+      .image-animation-left-exit
+        transform: translate3d(0, 0, 0)
+        -webkit-transform: translate3d(0, 0, 0)
+      .image-animation-left-exit-active
+        transform: translate3d(-625px, 0, 0)
+        -webkit-transform: translate3d(-625px, 0, 0)
+        transition: all .5s
+      .image-animation-right-enter
+        -webkit-transform: translate3d(-625px, 0, 0)
+        transform: translate3d(-625px, 0, 0)
+      .image-animation-right-enter-active
+        transform: translate3d(0, 0, 0)
+        -webkit-transform: translate3d(0, 0, 0)
+        transition: all .5s
+      .image-animation-right-exit
+        transform: translate3d(0, 0, 0)
+        -webkit-transform: translate3d(0, 0, 0)
+      .image-animation-right-exit-active
+        transform: translate3d(625px, 0, 0)
+        -webkit-transform: translate3d(625px, 0, 0)
+        transition: all .5s
     .bar-container
       position: absolute
       bottom: 10px
@@ -40,10 +56,10 @@
         width: 28px
         height: 2px
         background-color: #888
-        transition: all 1s ease-in
+        transition: all .5s
         &.show
           background-color: #fff
-          transition: all 1s ease-in
+          transition: all .5s
     .pre-container, .next-container
       display: flex
       justify-content: center
