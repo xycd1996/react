@@ -1,20 +1,24 @@
-$banner-width: 625px    // 轮播图宽度
-$banner-height: 270px   // 轮播图高度
-$banner-raduis: 8px   // 轮播图圆角
-
+$banner-width: 625px
+$banner-height: 270px
+$banner-radius: 8px
+  
 .banner
   padding-bottom: 35px
   border-bottom: 1px solid #f0f0f0
+  width: $banner-width
+  height: $banner-height
   .container
     display: flex
     align-items: center
     position: relative
+    width: inherit
+    height: inherit
     .images-container
       position: relative
-      width: $banner-width
-      height: $banner-height
+      width: inherit
+      height: inherit
       overflow: hidden
-      border-radius: $banner-raduis
+      border-radius: $banner-radius
       .item
         position: absolute
       .image-animation-left-enter
