@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 import './style.sass'
 
@@ -42,4 +43,12 @@ export default class ArticleList extends Component {
       </div>
     )
   }
+}
+
+ArticleList.propTypes = {
+  articleList: PropTypes.array
+}
+
+ArticleList.defaultProps = {
+  articleList: []
 }

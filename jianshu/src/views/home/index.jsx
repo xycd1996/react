@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Header from '../../components/header'
 import Banner from '../../components/banner'
 import ArticleList from '../../components/article-list'
+import MoreButton from '../../components/more-btn'
 
 import './style.sass'
 
@@ -66,6 +67,9 @@ export default class Home extends Component {
               rollingTime={this.state.rollingTime}
             />
             <ArticleList articleList={this.state.articleList} />
+            <div className='button'>
+              <MoreButton buttonName='阅读更多' />
+            </div>
           </div>
           <div className='content-right' />
         </div>

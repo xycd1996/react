@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { CSSTransition } from 'react-transition-group'
 
 import './style.sass'
@@ -149,4 +150,8 @@ export default class Banner extends Component {
   componentWillUnmount() {
     clearInterval(this.state.timer)
   }
+}
+
+Banner.propTypes = {
+  imgList: PropTypes.array
 }
