@@ -32,9 +32,13 @@ export default class ArticleList extends Component {
                   </span>
                 </div>
               </div>
-              <div className='right-container'>
+              <div
+                className={
+                  item.img ? 'right-container' : 'right-container hide'
+                }
+              >
                 <a href='/'>
-                  <img src={require('../../static/images/test.jpg')} alt='' />
+                  <img src={item.img} alt='' />
                 </a>
               </div>
             </div>
