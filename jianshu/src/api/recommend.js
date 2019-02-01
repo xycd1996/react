@@ -1,4 +1,15 @@
 import axios from 'axios'
+import { bannerSpider } from '../spider/recommend'
+
+export function bannerList() {
+  return axios({
+    method: 'get',
+    url: '/api'
+  }).then(res => {
+    let data = bannerSpider(res.data)
+    return Promise.resolve(data)
+  })
+}
 
 export function getAuthorList(
   seen_ids = '',

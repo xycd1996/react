@@ -5,8 +5,7 @@ import ArticleList from '../../components/article-list'
 import MoreButton from '../../components/more-btn'
 import TopList from '../../components/top-list'
 import Recommend from '../../components/recommend'
-import { getAuthorList } from '../../api/recommend'
-import { test } from '../../api/test'
+import { getAuthorList, bannerList } from '../../api/recommend'
 
 import './style.sass'
 
@@ -14,13 +13,7 @@ export default class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      imgList: [
-        require('../../static/images/banner_1.png'),
-        require('../../static/images/banner_2.jpg'),
-        require('../../static/images/banner_3.jpg'),
-        require('../../static/images/banner_4.jpg'),
-        require('../../static/images/banner_5.jpg')
-      ],
+      imgList: [],
       articleList: [
         {
           title: '身边冷知识：天天玩QQ，但你知道登录界面这俩人是谁吗？',
@@ -70,10 +63,12 @@ export default class Home extends Component {
         <Header />
         <div className='content-container'>
           <div className='content-left'>
-            <Banner
-              imgList={this.state.imgList}
-              rollingTime={this.state.rollingTime}
-            />
+            {this.state.imgList.length ? (
+              <Banner
+                imgList={this.state.imgList}
+                rollingTime={this.state.rollingTime}
+              />
+            ) : null}
             <ArticleList articleList={this.state.articleList} />
             <div className='button'>
               <MoreButton buttonName='阅读更多' />
@@ -98,9 +93,15 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
+    this.getBannerList()
     this.getAuthorList()
-    test().then(res => {
-      console.log(res)
+  }
+
+  getBannerList() {
+    bannerList().then(res => {
+      this.setState({
+        imgList: res
+      })
     })
   }
 
