@@ -4,6 +4,9 @@ import Banner from '../../components/banner'
 import ArticleList from '../../components/article-list'
 import MoreButton from '../../components/more-btn'
 import TopList from '../../components/top-list'
+import Recommend from '../../components/recommend'
+import { getAuthorList } from '../../api/recommend'
+import { test } from '../../api/test'
 
 import './style.sass'
 
@@ -54,8 +57,11 @@ export default class Home extends Component {
         }
       ],
       rollingTime: 3000,
-      show: true
+      show: true,
+      recommendAuthor: {},
+      seen_ids: ''
     }
+    this.changeAuthorList = this.changeAuthorList.bind(this)
   }
 
   render() {
@@ -77,9 +83,49 @@ export default class Home extends Component {
             <div className='topic'>
               <TopList />
             </div>
+            <div className='recommend-author'>
+              {this.state.recommendAuthor['users'] ? (
+                <Recommend
+                  author={this.state.recommendAuthor}
+                  changeAuthorList={this.changeAuthorList}
+                />
+              ) : null}
+            </div>
           </div>
         </div>
       </div>
     )
+  }
+
+  componentDidMount() {
+    this.getAuthorList()
+    test().then(res => {
+      console.log(res)
+    })
+  }
+
+  getAuthorList() {
+    getAuthorList().then(res => {
+      let seen_ids = []
+      res.users.forEach(item => {
+        seen_ids.push(item.id)
+      })
+      this.setState({
+        recommendAuthor: res,
+        seen_ids
+      })
+    })
+  }
+
+  changeAuthorList() {
+    getAuthorList(this.state.seen_ids.join(',')).then(res => {
+      this.setState(state => {
+        let seen_ids = []
+        res.users.forEach(item => {
+          seen_ids.push(item.id)
+        })
+        return { recommendAuthor: res, seen_ids: [...state.seen_ids, seen_ids] }
+      })
+    })
   }
 }
