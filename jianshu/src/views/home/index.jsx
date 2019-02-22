@@ -5,7 +5,8 @@ import ArticleList from '../../components/article-list'
 import MoreButton from '../../components/more-btn'
 import TopList from '../../components/top-list'
 import Recommend from '../../components/recommend'
-import { getAuthorList, bannerList } from '../../api/recommend'
+import { getAuthorList, getRecommend } from '../../api/recommend'
+import { bannerSpider, contentSpider } from '../../spider/recommend'
 
 import './style.sass'
 
@@ -14,41 +15,7 @@ export default class Home extends Component {
     super(props)
     this.state = {
       imgList: [],
-      articleList: [
-        {
-          title: '身边冷知识：天天玩QQ，但你知道登录界面这俩人是谁吗？',
-          description:
-            'QQ是很多人日常聊天使用的工具，虽然大家都是保持登录状态一点开就上线的，但是它的登录页面我们还是见过的。不知道你有没有过这样一个疑惑，那就是QQ...',
-          author: '于志佐',
-          comment: 182,
-          like: 31,
-          img: require('../../static/images/test.jpg')
-        },
-        {
-          title: '身边冷知识：天天玩QQ，但你知道登录界面这俩人是谁吗？',
-          description:
-            'QQ是很多人日常聊天使用的工具，虽然大家都是保持登录状态一点开就上线的，但是它的登录页面我们还是见过的。不知道你有没有过这样一个疑惑，那就是QQ...',
-          author: '于志佐',
-          comment: 182,
-          like: 31
-        },
-        {
-          title: '身边冷知识：天天玩QQ，但你知道登录界面这俩人是谁吗？',
-          description:
-            'QQ是很多人日常聊天使用的工具，虽然大家都是保持登录状态一点开就上线的，但是它的登录页面我们还是见过的。不知道你有没有过这样一个疑惑，那就是QQ...',
-          author: '于志佐',
-          comment: 182,
-          like: 31
-        },
-        {
-          title: '身边冷知识：天天玩QQ，但你知道登录界面这俩人是谁吗？',
-          description:
-            'QQ是很多人日常聊天使用的工具，虽然大家都是保持登录状态一点开就上线的，但是它的登录页面我们还是见过的。不知道你有没有过这样一个疑惑，那就是QQ...',
-          author: '于志佐',
-          comment: 182,
-          like: 31
-        }
-      ],
+      articleList: [],
       rollingTime: 3000,
       show: true,
       recommendAuthor: {},
@@ -93,14 +60,17 @@ export default class Home extends Component {
   }
 
   componentDidMount() {
-    this.getBannerList()
+    this.getRecommend()
     this.getAuthorList()
   }
 
-  getBannerList() {
-    bannerList().then(res => {
+  getRecommend() {
+    getRecommend().then(res => {
+      const imgList = bannerSpider(res)
+      const articleList = contentSpider(res)
       this.setState({
-        imgList: res
+        imgList,
+        articleList
       })
     })
   }

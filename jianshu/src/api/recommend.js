@@ -1,13 +1,11 @@
 import axios from 'axios'
-import { bannerSpider } from '../spider/recommend'
 
-export function bannerList() {
+export function getRecommend() {
   return axios({
     method: 'get',
     url: '/api'
   }).then(res => {
-    let data = bannerSpider(res.data)
-    return Promise.resolve(data)
+    return Promise.resolve(res.data)
   })
 }
 
@@ -27,16 +25,6 @@ export function getAuthorList(
     headers: {
       Accept: 'application/json'
     }
-  }).then(res => {
-    return Promise.resolve(res.data)
-  })
-}
-
-export function getArticleList() {
-  return axios({
-    method: 'get',
-    url: '/api',
-    params: {}
   }).then(res => {
     return Promise.resolve(res.data)
   })
