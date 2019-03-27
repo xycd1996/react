@@ -16,7 +16,7 @@ export default class TodoList extends Component {
     return (
       <Fragment>
         <div>
-          <input
+            <input
             id='est'
             type='text'
             value={this.state.inputVal}
