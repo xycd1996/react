@@ -1,0 +1,47 @@
+.formList
+  .container
+    .item
+      &:after
+        border-bottom: 1px solid #ddd
+        display: block
+        content: ''
+        width: 100%
+      .itemBox
+        padding: 15px 15px
+        display: flex
+        .photo
+          flex: 0 0 68px
+        .content
+          flex: 1 1 auto
+          margin-left: 24px
+          font-size: 3.8vw
+          .title
+            padding: 4px 6px
+            display: inline-block
+            color: #fff
+            font-size: 3.6vw
+            border-radius: 5px
+            background: #0080ff
+          .phone, .desc
+            margin: 10px 0
+            color: #888
+            font-size: 3.4vw
+          .time, .type, .sex, .age
+            display: inline-block
+            position: relative
+            font-size: 3.4vw
+            &.time
+              bottom: -5px
+              float: right
+              color: #888
+            &.type, &.sex, &.age
+              margin-right: 6px
+              padding: 2px 6px
+              bottom: -3px
+              color: #ff3131
+              border: 1px solid #ff3131
+              border-radius: 5px
+            &.age
+              color: green
+              border: 1px solid green
+          

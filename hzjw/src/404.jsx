@@ -1,12 +1,13 @@
+// 导航页
 import React, { Component } from 'react'
 import { HashRouter as Router, Link } from 'react-router-dom'
-import * as codes from './common/js/newsCode'
+import * as codes from '@common/js/newsCode'
 
 export default class None extends Component {
   render() {
     return (
       <Router>
-        <div className='none'>
+        <div className="none">
           <ul>
             <li>
               ——————App页面——————
@@ -30,9 +31,10 @@ export default class None extends Component {
                   <Link to={`/app/news/${codes.LostAndFound}`}>失物招领</Link>
                 </li>
                 <li>
-                  <Link to={`/app/news/${codes.SearchNotices}`}>
-                    在线寻人
-                  </Link>
+                  <Link to={`/app/news/${codes.SearchNotices}`}>在线寻人</Link>
+                </li>
+                <li>
+                  <Link to={`/app/p2p/register`}>p2p登记平台</Link>
                 </li>
               </ul>
             </li>

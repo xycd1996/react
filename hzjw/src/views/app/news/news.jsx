@@ -1,24 +1,26 @@
 import React, { Component } from 'react'
 import { Toast } from 'antd-mobile'
-import { getSite, getNews } from '../../../api/news'
-import Tags from '../../../components/app/tags/tags'
-import NewsList1 from '../../../components/app/news-list-1/news-list-1'
-import NewsList2 from '../../../components/app/news-list-2/news-list-2'
-import Loading from '../../../components/app/loading/loading'
-import Scroll from '../../../components/app/scroll/scroll'
-import BackTop from '../../../components/app/back-top/back-top'
+import { getSite, getNews } from '@api/news'
+import Tags from '@components/app/tags/tags'
+import NewsList from '@components/app/news-list/news-list'
+import FormList from '@components/app/form-list/form-list'
+import Loading from '@components/app/loading/loading'
+import Scroll from '@components/app/scroll/scroll'
+import BackTop from '@components/app/back-top/back-top'
 import { HashRouter as Router, Route } from 'react-router-dom'
-import newsDetail from '../../../components/app/news-detail/news-detail'
+import NewsDetail from '@components/app/news-detail/news-detail'
+import FormDetail from '@components/app/form-detail/form-detail'
+import { searchCode } from '@common/js/searchNewsCode'
 
 const P_SIZE = 15
 
-export default class NewsTemplate1 extends Component {
+export default class News extends Component {
   constructor(props) {
     super(props)
     this.state = {
       cate: '',
       tagsData: null,
-      newsList: [],
+      listData: [],
       page: 1,
       requesting: true // 上拉请求阀门，为true时进行数据请求，为false则拒绝请求，防止上拉多次发起请求时间
     }
@@ -30,28 +32,34 @@ export default class NewsTemplate1 extends Component {
   }
 
   render() {
-    const { tagsData, newsList } = this.state
+    const { tagsData, listData } = this.state
     const { match } = this.props
     return (
-      <div className='news-template-1'>
+      <div className="news-template-1">
         <Scroll ref={this.scrollDom} onLoad={this.onLoad}>
           {tagsData ? (
             <Tags changeNews={this.changeNews} tags={tagsData} />
           ) : null}
-          {newsList.length ? (
-            // newsList[0].sex ? (
-            //   '333'
-            // ) : newsList[0].itemType ? (
-            //   '123'
-            // ) : (
-            <NewsList1 showDetail={this.showDetail} newsList={newsList} />
+          {listData.length ? (
+            searchCode(this.props.match.params.id) === 1 ? (
+              <NewsList showDetail={this.showDetail} listData={listData} />
+            ) : (
+              <FormList showDetail={this.showDetail} listData={listData} />
+            )
           ) : (
             <Loading />
           )}
         </Scroll>
         <BackTop backTop={this.backTop} />
         <Router>
-          <Route path={`${match.url}/:id`} component={newsDetail} />
+          <Route
+            path={`${match.url}/:id`}
+            component={
+              searchCode(this.props.match.params.id) === 1
+                ? NewsDetail
+                : FormDetail
+            }
+          />
         </Router>
       </div>
     )
@@ -88,12 +96,12 @@ export default class NewsTemplate1 extends Component {
     })
     getNews(cate, page, P_SIZE).then(res => {
       if (res.code === 200) {
-        const newsList = res.data.data
+        const listData = res.data.data
         const total = res.data.total
         if (cate !== this.state.cate) {
           const page = 2
           this.setState({
-            newsList,
+            listData,
             page,
             requesting: true,
             total,
@@ -104,7 +112,7 @@ export default class NewsTemplate1 extends Component {
         this.setState(pre => {
           const page = pre.page + 1
           return {
-            newsList: [...pre.newsList, ...newsList],
+            listData: [...pre.listData, ...listData],
             page,
             requesting: true,
             total,
@@ -130,7 +138,7 @@ export default class NewsTemplate1 extends Component {
     let contentHeight = this.scrollDom.current.scroll.scrollerHeight
     let contentClientHeight = this.scrollDom.current.scroll.wrapperHeight
     let sum = contentHeight + pox.y - contentClientHeight
-    if (parseInt(sum) < 100 && parseInt(sum) > 0) {
+    if (parseInt(sum) < 20 && parseInt(sum) > 0) {
       const cate = this.state.cate
       const end = Math.ceil(this.state.total / P_SIZE)
       if (this.state.page < end) {
@@ -144,8 +152,12 @@ export default class NewsTemplate1 extends Component {
     }
   }
 
-  showDetail(code) {
+  showDetail(code, img) {
     const { match } = this.props
+    const type = searchCode(match.params.id)
+    sessionStorage.setItem('image', img)
+    sessionStorage.setItem('type', type)
+    console.log(type)
     this.props.history.push(`${match.url}/${code}`)
   }
 }

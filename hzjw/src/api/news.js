@@ -34,7 +34,7 @@ export function getNews(cate, page = 1, psize = 15) {
     })
 }
 
-export function getDetail(code, type = 1) {
+export function getDetail(code, type) {
   return axios({
     method: 'get',
     url: '/hzjwztc/api/news/detail.action',

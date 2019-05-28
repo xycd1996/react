@@ -5,7 +5,7 @@ import styles from './loading.module.sass'
 
 const Loading = () => (
   <div className={styles.loading}>
-    <Icon type='loading' size='lg' />
+    <Icon type="loading" size="lg" />
   </div>
 )
 

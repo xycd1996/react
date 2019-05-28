@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import BScroll from 'better-scroll'
 import PropTypes from 'prop-types'
 
-export default class scroll extends Component {
+export default class Scroll extends Component {
   static propTypes = {
     click: PropTypes.bool,
     onLoad: PropTypes.func,
@@ -49,6 +49,7 @@ export default class scroll extends Component {
       bounce: bounce
     })
     this.scroll.on('scroll', pos => {
+      // console.log(pos)
       onLoad(pos)
     })
   }
