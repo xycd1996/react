@@ -1,25 +1,58 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { NavLink } from 'react-router-dom'
 
 import styles from './tab-bar.module.scss'
 
-const TabBar = () => {
+const TabBar = memo(() => {
   return (
     <>
-      <div className={styles['tab-bar']}>
+      <footer className={styles['tab-bar']}>
         <ul className={styles['container']}>
           <li>
-            <NavLink to='/'>首页</NavLink>
+            <NavLink
+              exact
+              className={styles['item']}
+              activeClassName={styles['item-selected']}
+              to="/"
+            >
+              <div className={styles['home']} />
+              <center>首页</center>
+            </NavLink>
           </li>
           <li>
-            <NavLink to='/search-car'>寻车</NavLink>
+            <NavLink
+              className={styles['item']}
+              activeClassName={styles['item-selected']}
+              to="/search-car"
+            >
+              <div className={styles['search-car']} />
+              <center>寻车</center>
+            </NavLink>
           </li>
-          <li>金融</li>
-          <li>我的</li>
+          <li>
+            <NavLink
+              className={styles['item']}
+              activeClassName={styles['item-selected']}
+              to="/financial"
+            >
+              <div className={styles['financial']} />
+              <center>金融</center>
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className={styles['item']}
+              activeClassName={styles['item-selected']}
+              to="/mine"
+            >
+              <div className={styles['mine']} />
+              <center>我的</center>
+            </NavLink>
+          </li>
         </ul>
-      </div>
+      </footer>
     </>
   )
-}
+})
 
 export default TabBar

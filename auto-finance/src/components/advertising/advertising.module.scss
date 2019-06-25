@@ -1,0 +1,43 @@
+@import '../../assets/scss/theme';
+
+.advertising {
+  .feature {
+    margin: 16px 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    i {
+      font-size: $font-small-size;
+      color: $theme-color;
+    }
+  }
+  .stock {
+    padding: 14px;
+    box-shadow: 0 0 5px #c7bbf2;
+    border-radius: 5px;
+    h1 {
+      margin-left: 10px;
+      font-weight: 700;
+    }
+    .detail {
+      margin: 14px 0;
+      padding: 14px 20px;
+      border-radius: 5px;
+      border: 1px solid rgba(199, 187, 242, 0.8);
+      ul {
+        display: flex;
+        justify-content: space-around;
+        .stock-item {
+          font-size: $font-small-size;
+          h2 {
+            margin-bottom: 8px;
+            font-weight: 600;
+          }
+          .quantity {
+            color: $theme-color;
+          }
+        }
+      }
+    }
+  }
+}

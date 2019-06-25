@@ -1,7 +1,59 @@
+@import '../../assets/scss/theme';
+
 .tab-bar {
   position: fixed;
   bottom: 0;
   height: 46px;
   width: 100%;
-  box-shadow: 0px 3px 10px #888;
+  font-size: $font-small-size;
+  color: $text-color;
+  background: #fff;
+  box-shadow: 0px 3px 10px $text-color;
+  z-index: 999;
+  .container {
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+    li {
+      .item {
+        .home,
+        .search-car,
+        .financial,
+        .mine {
+          height: 30px;
+          width: 30px;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+        .home {
+          background-image: url('./icon_home_line.svg');
+        }
+        .search-car {
+          background-image: url('./icon_category_line.svg');
+        }
+        .financial {
+          background-image: url('./icon_fire_line.svg');
+        }
+        .mine {
+          background-image: url('./icon_user_line.svg');
+        }
+      }
+      .item-selected {
+        color: $theme-color;
+        .home {
+          background-image: url('./icon_home.svg');
+        }
+        .search-car {
+          background-image: url('./icon_category.svg');
+        }
+        .financial {
+          background-image: url('./icon_fire.svg');
+        }
+        .mine {
+          background-image: url('./icon_user.svg');
+        }
+      }
+    }
+  }
 }

@@ -1,0 +1,105 @@
+@import '../../assets//scss/theme';
+
+.recommend {
+  .title {
+    margin: 20px;
+    text-align: center;
+    font-weight: 600;
+  }
+  .list {
+    .item {
+      box-shadow: 2px 2px 6px #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      .top {
+        ul {
+          padding: 14px 10px;
+          display: flex;
+          justify-content: space-around;
+          font-size: 13px;
+          font-weight: 600;
+          color: #756752;
+          background: -webkit-linear-gradient(right, #d6cab8, #ebdfcc);
+          background: -o-linear-gradient(right, #d6cab8, #ebdfcc);
+          background: -moz-linear-gradient(right, #d6cab8, #ebdfcc);
+          background: linear-gradient(to right, #d6cab8, #ebdfcc);
+        }
+      }
+      .content {
+        display: flex;
+        padding: 10px 0;
+        min-height: 100px;
+        .image {
+          flex: 0 0 34vw;
+          img {
+            width: 34vw;
+          }
+        }
+        .car-detail {
+          flex: 1 1 auto;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-around;
+          padding: 0 8px;
+          color: $text-color;
+          .name {
+            font-weight: 600;
+            color: $title-color;
+          }
+          .era,
+          .deal-place,
+          .discount {
+            font-size: 13px;
+          }
+          .discount {
+            padding: 4px 6px;
+            text-align: center;
+            color: #fff;
+            background: linear-gradient(to right, #6444ca, #9f46b9);
+            border-radius: 50px;
+          }
+          // 小屏幕机型
+          @media screen and (max-width: 380px) {
+            .name {
+              font-size: $font-default-size;
+            }
+            .era,
+            .deal-place,
+            .discount {
+              font-size: $font-small-size;
+            }
+            .discount {
+              font-size: 10px;
+            }
+          }
+        }
+      }
+      .bottom {
+        display: flex;
+        justify-content: space-around;
+        padding: 0 16px 10px;
+        line-height: $font-default-size;
+        .price {
+          font-size: $font-larger-size;
+          font-weight: 600;
+          i {
+            color: red;
+          }
+        }
+        .old-price {
+          text-decoration: line-through;
+          font-size: $font-default-size;
+          color: $text-color;
+        }
+        @media screen and (max-width: 380px) {
+          .price {
+            font-size: $font-large-size;
+          }
+          .old-price {
+            font-size: $font-small-size;
+          }
+        }
+      }
+    }
+  }
+}
