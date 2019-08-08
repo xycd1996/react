@@ -6,12 +6,9 @@ const Loading = () => {
   return (
     <>
       <div className={styles.loading}>
-        <img
-          src={require('./loading.svg')}
-          width='100'
-          height='100'
-          alt='loading'
-        />
+        <div className={styles.wrapper}>
+          <img src={require('./loading.svg')} alt="loading" />
+        </div>
       </div>
     </>
   )

@@ -1,0 +1,43 @@
+@import '../../assets/scss/theme';
+
+.hot-car {
+  margin: 10px 0 15px;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 4px 4px 10px #ddd;
+  .title {
+    text-align: center;
+    font-size: $font-large-size;
+    font-weight: 600;
+    i {
+      margin: 0 10px;
+      font-weight: 300;
+      color: #ddd;
+    }
+  }
+  .exhibitions {
+    margin-top: 10px;
+    .wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      .item {
+        box-sizing: border-box;
+        -moz-box-sizing: border-box; /* Firefox */
+        -webkit-box-sizing: border-box; /* Safari */
+        padding: 6px 2px;
+        width: 50%;
+        border: 2px solid #fff;
+        background: #f8f9fe;
+        .name {
+          font-size: $font-smaller-size;
+          color: $text-color;
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 380px) {
+    .title {
+      font-size: $font-default-size;
+    }
+  }
+}
